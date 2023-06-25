@@ -15,15 +15,10 @@ public class InputControls : MonoBehaviour
             Debug.Log("Exit Game");
             //Exit if in the editor - else close application
             #if UNITY_EDITOR
-                        UnityEditor.EditorApplication.isPlaying = false;
+                UnityEditor.EditorApplication.isPlaying = false;
             #else
-                                Application.Quit();
+                Application.Quit();
             #endif
         }
-        else if (Keyboard.current.anyKey.wasPressedThisFrame)
-        {
-            // Do something with other keypresses
-            Debug.Log("Key Pressed");
-        }   
     }
 }

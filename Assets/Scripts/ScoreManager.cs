@@ -26,7 +26,10 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator UpdateScore()
     {
-        score += scoreAmountPerTime;
+        if (GameManager.Instance.currentState == GameManager.GameState.Playing)
+        {
+            score += scoreAmountPerTime;
+        }
         yield return new WaitForSeconds(scoreUpdateTime);
         yield return StartCoroutine(UpdateScore());
     }

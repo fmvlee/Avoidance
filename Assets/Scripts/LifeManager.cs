@@ -9,6 +9,7 @@ public class LifeManager : MonoBehaviour
     private int lives = 3;
     [SerializeField]
     public GameObject livesText;
+    public GameEvent gameOverEvent;
 
     private void Start()
     {
@@ -30,6 +31,11 @@ public class LifeManager : MonoBehaviour
     {
         lives--;
         UpdateLives();
+        if(lives == 0)
+        {
+            //GAME OVER
+            gameOverEvent.TriggerEvent();
+        }
     }
 }
 
