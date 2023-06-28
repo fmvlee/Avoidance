@@ -8,12 +8,11 @@ using Unity.Services.Leaderboards;
 using UnityEngine.SocialPlatforms.Impl;
 using System.Threading.Tasks;
 using Unity.Services.Leaderboards.Models;
+using Newtonsoft.Json.Linq;
 
 public class LeaderboardManager : MonoBehaviour
 {
     const string leaderboardId = "Avoidance";
-    public bool scoreBool = false;
-    public int newScore = 0;
 
     private async void Awake()
     {
@@ -21,19 +20,12 @@ public class LeaderboardManager : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
-    /*void Update()
-    {
-        if (!scoreBool)
-        {
-            AddScore(newScore);
-            scoreBool = true;
-        }
-    }*/
-
     public async void AddScore(int score)
     {
         var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
         Debug.Log(JsonConvert.SerializeObject(playerEntry));
+        Debug.Log($"Score: {playerEntry.Score}");
+        Debug.Log($"Player Name: {playerEntry.PlayerName}");
     }
 
     public async void GetPlayerScore()
@@ -46,12 +38,5 @@ public class LeaderboardManager : MonoBehaviour
     {
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
-    }
-
-    public async Task<LeaderboardScoresPage> GetHighScoreVTwo()
-    {
-        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
-        Debug.Log(JsonConvert.SerializeObject(scoresResponse));
-        return scoresResponse;
     }
 }
