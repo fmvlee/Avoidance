@@ -14,7 +14,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private GameObject target;
     // Time between changes in direction
-    [SerializeField]
     private float directionCooldown;
     // Minimum time between changes in direction
     [SerializeField]
@@ -22,6 +21,11 @@ public class EnemyMovement : MonoBehaviour
     // Maximum time between changes in direction
     [SerializeField]
     private float directionMaxCooldown = 5f;
+    [SerializeField]
+    private float directionMinChange = -90f;
+    // Maximum time between changes in direction
+    [SerializeField]
+    private float directionMaxChange = 90f;
     // Distance the enemy can go off the screen
     [SerializeField]
     private float screenBorder;
@@ -31,9 +35,11 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rb;
     // Reference to the main camera
     private Camera screenCamera;
-
+    // The type of movement the Enemy will follow
     [SerializeField]
-    private enum MovementType { TargetPlayer, Random }
+    private MovementType currentMovementType;
+    // Selectable MovementTypes
+    private enum MovementType { TargetPlayer, Random, AroundPoint, SineWave }
 
     private void Awake()
     {
@@ -57,23 +63,18 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    // Sets the velocity of the enemy
-    private void SetVelocity()
-    {
-        // Set the velocity of the rigid body with speed multiplier
-        rb.velocity = transform.up * speed;
-    }
     private void UpdateTargetDirection()
     {
         directionCooldown -= Time.deltaTime;    
         if(directionCooldown <= 0)
         {
-            if (!target.GetComponent<EnemyCollision>().isImmune)
+            if (!target.GetComponent<EnemyCollision>().isImmune && currentMovementType == MovementType.TargetPlayer)
             {
                 Vector2 enemyToPlayeer = target.transform.position - transform.position;
                 targetDirection = enemyToPlayeer.normalized;
             }
-            float angleChange = Random.Range(-90f, 90f);
+
+            float angleChange = Random.Range(directionMinChange, directionMaxChange);
             Quaternion rotaion = Quaternion.AngleAxis(angleChange   , transform.forward);
             targetDirection = rotaion * targetDirection;
             directionCooldown = Random.Range(directionMinCooldown, directionMaxCooldown);
@@ -114,6 +115,13 @@ public class EnemyMovement : MonoBehaviour
         Quaternion rotateTo = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         // Rotate the enemy rigid body
         rb.SetRotation(rotateTo);
+    }
+
+    // Sets the velocity of the enemy
+    private void SetVelocity()
+    {
+        // Set the velocity of the rigid body with speed multiplier
+        rb.velocity = transform.up * speed;
     }
 
     // Called when the Gameover Event is called

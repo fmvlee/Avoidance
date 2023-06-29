@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7556840174058217610}
   - component: {fileID: 5646989162687411555}
   - component: {fileID: 4016829221402955392}
+  - component: {fileID: 2431698295024363739}
   - component: {fileID: 3558506429567828030}
   - component: {fileID: 839554339889834561}
   m_Layer: 6
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7598aec2c0398e41865d08f16683355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 3
   rotationSpeed: 180
   target: {fileID: 0}
   directionCooldown: 0
@@ -170,7 +171,7 @@ MonoBehaviour:
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6775944725290542010}
+      - m_Target: {fileID: 7556840174058217610}
         m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
         m_MethodName: GameOver
         m_Mode: 1
@@ -182,6 +183,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2431698295024363739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775944725290542010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba215ebccb4364a41b55bc1c52836967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPulsing: 1
+  pulseTo: {x: 0.5, y: 0.5, z: 0.5}
+  pulseSpeed: 0.8
 --- !u!58 &3558506429567828030
 CircleCollider2D:
   m_ObjectHideFlags: 0

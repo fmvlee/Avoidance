@@ -22,8 +22,8 @@ public class EnemyCollision : MonoBehaviour
     // Handles Collision
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Checks player has collided with an enemy and isnt immune
-        if(collision.gameObject.tag == "Enemy" && !isImmune)
+        // Checks player has collided with an enemy and isnt immune whilst the game is in the playing state
+        if(collision.gameObject.tag == "Enemy" && !isImmune && GameManager.Instance.currentState == GameManager.GameState.Playing)
         {
             // Deduct a life
             GameManager.Instance.lifeManager.RemoveLife();
