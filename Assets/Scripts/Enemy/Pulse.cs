@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class Pulse : MonoBehaviour
 {
+    // Source of pulse data
+    [SerializeField]
+    private PulseData pulseData;
     // Checks if the object is pulsing
     [SerializeField]
     private bool isPulsing = true;
-    // Scale to pulse towards
+    // Amount to scale by in the pulse
     [SerializeField]
+    private float pulseFactor = 1.25f;
+    // Scale to pulse towards
     private Vector3 pulseTo;
     // Scale to Pulse From
     private Vector3 pulseFrom;
@@ -21,12 +26,20 @@ public class Pulse : MonoBehaviour
     // Where the object has scaled to so far
     private float scaledAmount;
 
+    private void Awake()
+    {
+        isPulsing = pulseData.isPulsing;
+        pulseFactor = pulseData.pulseFactor;
+        pulseSpeed = pulseData.pulseSpeed;
+    }
     private void Start()
     {
         // Get the objects current scale
         pulseFrom = gameObject.transform.localScale;
+        // Calculate scale to pulse to
+        pulseTo = gameObject.transform.localScale * pulseFactor;
         // Sets time and distance
-        PulseSetup();
+        PulseSetup();        
     }
 
     void FixedUpdate()

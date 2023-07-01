@@ -1,12 +1,23 @@
+using Newtonsoft.Json.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    // Source to load movement data
+    [SerializeField]
+    private EnemyMovementData enemyData;
     // Speed of the Enemy
     [SerializeField]
     private float speed= 3;
+    [SerializeField]
+    private bool variedSpeed = false;
+    [SerializeField]
+    private float speedMin = 3f;
+    [SerializeField]
+    private float speedMax = 4.2f;
+
     // Speed the Enemy can turn
     [SerializeField]
     private float rotationSpeed = 5;
@@ -39,16 +50,40 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private MovementType currentMovementType;
     // Selectable MovementTypes
-    private enum MovementType { TargetPlayer, Random, AroundPoint, SineWave }
+    public enum MovementType { Stationary, TargetPlayer, Random, AroundPoint, SineWave }
+
 
     private void Awake()
     {
+        SetupEnemyData();
         // Get the rigidbody of this enemy
         rb = GetComponent<Rigidbody2D>();
         // Set an initial direction
         targetDirection = transform.up;
         // Get the main camera
         screenCamera = Camera.main;
+        // Setup direction cooldown speed
+        directionCooldown = Random.Range(directionMinCooldown, directionMaxCooldown);
+        // Check if the enemy has a varied speed and choose the speed
+        if (variedSpeed)
+        {
+            speed = Random.Range(speedMin, speedMax);
+        }
+    }
+
+    private void SetupEnemyData()
+    {
+        variedSpeed = enemyData.variedSpeed;
+        speed = enemyData.speed;
+        speedMin = enemyData.minSpeed;
+        speedMax = enemyData.maxSpeed;
+        rotationSpeed = enemyData.rotationSpeed;
+        directionMinCooldown = enemyData.directionMinCooldown;
+        directionMaxCooldown = enemyData.directionMaxCooldown;
+        directionMinChange = enemyData.directionMinChangeAngle;
+        directionMaxChange = enemyData.directionMaxChangeAngle;
+        screenBorder = enemyData.screenBorder;
+        currentMovementType = enemyData.movementType;
     }
 
     private void FixedUpdate()
@@ -65,26 +100,50 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdateTargetDirection()
     {
-        directionCooldown -= Time.deltaTime;    
-        if(directionCooldown <= 0)
-        {
-            if (!target.GetComponent<EnemyCollision>().isImmune && currentMovementType == MovementType.TargetPlayer)
-            {
-                Vector2 enemyToPlayeer = target.transform.position - transform.position;
-                targetDirection = enemyToPlayeer.normalized;
-            }
+        // Reduce direction cooldown by the time passed
+        directionCooldown -= Time.deltaTime;
 
-            float angleChange = Random.Range(directionMinChange, directionMaxChange);
-            Quaternion rotaion = Quaternion.AngleAxis(angleChange   , transform.forward);
-            targetDirection = rotaion * targetDirection;
-            directionCooldown = Random.Range(directionMinCooldown, directionMaxCooldown);
+        switch (currentMovementType)
+        { 
+            case MovementType.TargetPlayer:
+                Debug.Log("target player");
+                if (directionCooldown <= 0)
+                {
+                    if (!target.GetComponent<EnemyCollision>().isImmune)
+                    {
+                        Vector2 enemyToPlayeer = target.transform.position - transform.position;
+                        targetDirection = enemyToPlayeer.normalized;
+                        RotateToTarget();
+                    } else
+                    {
+                        ChangeDirection();
+                    }
+                }
+                break;
+            case MovementType.Random:
+                if (directionCooldown <= 0)
+                {
+                    ChangeDirection();
+                }
+                Debug.Log("Random Movement");
+                break;
+            case MovementType.Stationary:
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                Debug.Log("Stationary");
+                break;
         }
+
+        // Check enemy not off screen
         PreventEnemyOffScreen();
     }
 
-    private void UpdateRandomDirection()
+    // Change the enemy direction to the target direction
+    private void ChangeDirection()
     {
-        
+        float angleChange = Random.Range(directionMinChange, directionMaxChange);
+        Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
+        targetDirection = rotation * targetDirection;
+        directionCooldown = Random.Range(directionMinCooldown, directionMaxCooldown);
     }
 
     // Check if the enemy has gone off the side of the screen and sends it towards the play area

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Lifespan : MonoBehaviour
 {
     [SerializeField]
+    private LifeSpanData lifeSpanData;
+    [SerializeField]
     private bool hasLifespan = false;
     [SerializeField]
     private float lifespan = 20f;
@@ -14,7 +16,15 @@ public class Lifespan : MonoBehaviour
     private float minLifespan = 5f;
     [SerializeField]
     private float maxLifespan = 20f;
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        hasLifespan = lifeSpanData.hasLifespan;
+        lifespan = lifeSpanData.lifespan;
+        randomiseLifespan = lifeSpanData.randomiseLifespan;
+        minLifespan = lifeSpanData.minLifespan;
+        maxLifespan = lifeSpanData.maxLifespan;
+    }
     void Start()
     {
         if(hasLifespan)
