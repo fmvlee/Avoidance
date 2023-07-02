@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 5688557838754979}
   - component: {fileID: 1756551667922053024}
   - component: {fileID: 5182367888303040537}
+  - component: {fileID: 1217927556444768068}
+  - component: {fileID: 5549984943824038042}
   - component: {fileID: 6710940865209884164}
   - component: {fileID: 92587582397919502}
   - component: {fileID: 6142283490049171512}
-  - component: {fileID: 5549984943824038042}
-  - component: {fileID: 1217927556444768068}
-  m_Layer: 6
-  m_Name: Base_Enemy
+  m_Layer: 7
+  m_Name: Base_Enemy_Circular
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &375882162744163982
 SpriteRenderer:
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9075965046567130796, guid: 5513fe6aa8c5cd5419f7394071ea73e0,
+  m_Sprite: {fileID: 8798316271258456706, guid: 252ccbe255fb55c44a7d6eb0d92457c1,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,6 +152,51 @@ MonoBehaviour:
   randomiseLifespan: 0
   minLifespan: 5
   maxLifespan: 20
+--- !u!114 &1217927556444768068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971878632260600918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281047e569344f34f8117945c1d39ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInWaitTime: 5
+  fadeInSpeed: 0.07
+  fadeInAmount: 0.02
+  startAlpha: 0.4
+  disableMovementOnStart: 1
+--- !u!114 &5549984943824038042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971878632260600918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461bea53b7aa8d3439faae77ffebacf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9c662c9a763955c45a37154662907bb6, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5688557838754979}
+        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &6710940865209884164
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -187,7 +232,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.08
+  m_Radius: 0.25
 --- !u!50 &92587582397919502
 Rigidbody2D:
   serializedVersion: 4
@@ -249,50 +294,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.21875
---- !u!114 &5549984943824038042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971878632260600918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461bea53b7aa8d3439faae77ffebacf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 9c662c9a763955c45a37154662907bb6, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5688557838754979}
-        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
-        m_MethodName: GameOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1217927556444768068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971878632260600918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281047e569344f34f8117945c1d39ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeInWaitTime: 5
-  fadeInSpeed: 0.07
-  fadeInAmount: 0.01
-  startAlpha: 0.4
-  disableMovementOnStart: 1
+  m_Offset: {x: 0.0014254451, y: 0}
+  m_Radius: 0.46249938

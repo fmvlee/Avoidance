@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public LifeManager lifeManager;
 
-    
+    public GameEvent gameStartEvent;
+
     void Awake()
     {
         // Check if an instance exists
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         currentState = GameState.Playing;
+        gameStartEvent.TriggerEvent();
         player.SetActive(true);
     }   
 }

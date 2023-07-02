@@ -58,8 +58,10 @@ public class EnemyMovement : MonoBehaviour
         SetupEnemyData();
         // Get the rigidbody of this enemy
         rb = GetComponent<Rigidbody2D>();
-        // Set an initial direction
-        targetDirection = transform.up;
+        // Get the player as a target
+        target = GameManager.Instance.player.gameObject;
+        // Set an initial, random direction
+        targetDirection = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
         // Get the main camera
         screenCamera = Camera.main;
         // Setup direction cooldown speed
@@ -93,7 +95,7 @@ public class EnemyMovement : MonoBehaviour
         {
             // Call methods that support movement
             UpdateTargetDirection();
-            RotateToTarget();
+           // RotateToTarget();
             SetVelocity();
         }
     }
@@ -125,10 +127,12 @@ public class EnemyMovement : MonoBehaviour
                 {
                     ChangeDirection();
                 }
+                RotateToTarget();
                 Debug.Log("Random Movement");
                 break;
             case MovementType.Stationary:
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
+                rb.rotation += rotationSpeed * Time.deltaTime; //THIS NEEDSchecking **********************
                 Debug.Log("Stationary");
                 break;
         }

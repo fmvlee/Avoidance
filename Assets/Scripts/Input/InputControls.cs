@@ -20,5 +20,13 @@ public class InputControls : MonoBehaviour
                 Application.Quit();
             #endif
         }
+
+        if(GameManager.Instance.currentState == GameManager.GameState.GameOver)
+        {
+            if(Keyboard.current.anyKey.wasPressedThisFrame){
+                Destroy(GameManager.Instance);
+                SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     // Disable movement whilst faded out
     [SerializeField]
     private bool disableMovementOnStart = true;
-    
+
     // Sprite to fade in
     private SpriteRenderer spriteRenderer;
 
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     private EnemyMovement movement;
     private Lifespan lifeSpan;
     private Pulse pulse;
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
         movement = GetComponent<EnemyMovement>();
         lifeSpan = GetComponent<Lifespan>();
         pulse = GetComponent<Pulse>();
+        rb = GetComponent<Rigidbody2D>();
 
         // Get the sprite render and set the could to the starting alpha
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -62,6 +64,7 @@ public class Enemy : MonoBehaviour
         movement.enabled = true;
         lifeSpan.enabled = true;
         pulse.enabled = true;
+        gameObject.layer = 6;
     }
 
     // Coroutine to begin fade in operation

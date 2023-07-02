@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
         {
             // Load the game
             Debug.Log("Load game");
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         }
     }
 }
