@@ -34,7 +34,7 @@ public class SpawnManager : MonoBehaviour
 
             if (spawnTime > spawnWaves[currentWave].waveTime)
             {
-                Debug.Log("Spawn Wave: " + spawnWaves[currentWave].waveName);
+                Debug.Log("Spawn Wave: " + spawnWaves[currentWave].waveName + " at a time of " + spawnTime);
                 Debug.Log("Spawnables in wave: " + (spawnWaves[currentWave].spawnables.Count));
                 // Spawn the wave
                 for (int i = 0; i < spawnWaves[currentWave].spawnables.Count; i++)
@@ -60,18 +60,17 @@ public class SpawnManager : MonoBehaviour
                     spawnPosition = GameManager.Instance.player.transform.position;
                     break;
                 case (SpawnManager.SpawnPattern.Random):
-                    spawnPosition = RandomScreenPosition();
+                    Vector2 spawnXY = RandomScreenPosition();
+                    spawnPosition = new Vector3(spawnXY.x, spawnXY.y, 0f);
                     break;
             }
-            GameObject spawned = Instantiate(spawn.spawnItem,spawnPosition, Quaternion.identity); // NEED TP SMANGE SPAWN POSITION HERE
+            GameObject spawned = Instantiate(spawn.spawnItem,spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawn.spawnInterval);
         }      
     }
 
-    private Vector3 RandomScreenPosition()
+    private Vector2 RandomScreenPosition()
     {
-        float randomX = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
-        float randomY = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
-        return new Vector3(randomX, randomY, 0);
+        return Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
     }
 }

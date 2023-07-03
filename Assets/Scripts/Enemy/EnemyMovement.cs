@@ -61,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
         // Get the player as a target
         target = GameManager.Instance.player.gameObject;
         // Set an initial, random direction
-        targetDirection = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+        targetDirection = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
         // Get the main camera
         screenCamera = Camera.main;
         // Setup direction cooldown speed
@@ -114,12 +114,12 @@ public class EnemyMovement : MonoBehaviour
                     if (!target.GetComponent<EnemyCollision>().isImmune)
                     {
                         Vector2 enemyToPlayeer = target.transform.position - transform.position;
-                        targetDirection = enemyToPlayeer.normalized;
-                        RotateToTarget();
+                        targetDirection = enemyToPlayeer.normalized;                        
                     } else
                     {
                         ChangeDirection();
                     }
+                    RotateToTarget();
                 }
                 break;
             case MovementType.Random:

@@ -651,7 +651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholde for Top scores 6 - 10
+  m_text: Placeholder for Top scores 6 - 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c1d2a45dc1fdba84d8b020c9d6a6711b, type: 2}
   m_sharedMaterial: {fileID: 8448201661085462897, guid: c1d2a45dc1fdba84d8b020c9d6a6711b,
@@ -1138,6 +1138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
   justScoreText: {fileID: 0}
+  playerHiScore: {fileID: 0}
   scoreUpdateTime: 0.01
   scoreAmountPerTime: 1
 --- !u!114 &731441479
@@ -1180,6 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9a10496d2a0f24499087df254250ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHighScore: 0
 --- !u!4 &736922382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9212948953738406485, guid: f9e66f3fda627aa4f8521587dd0ef820,
@@ -1430,7 +1432,7 @@ GameObject:
   - component: {fileID: 920212503}
   m_Layer: 5
   m_Name: PHiScore
-  m_TagString: JustScored
+  m_TagString: HiScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1602,6 +1604,9 @@ MonoBehaviour:
   spawnWaves:
   - {fileID: 11400000, guid: 12c72b83bd5c9f74eb7397e904d9a47d, type: 2}
   - {fileID: 11400000, guid: dd061a06f387da74b9b9039b35f522be, type: 2}
+  - {fileID: 11400000, guid: a28ab8402e9464e44802f23a4e61db20, type: 2}
+  - {fileID: 11400000, guid: c0a61f7a65c6641418b72a80e957b647, type: 2}
+  - {fileID: 11400000, guid: 0421919b508e82540ab862b6dc6f8906, type: 2}
 --- !u!1 &985943277
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,7 +4481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholde for Top scores 1 - 5
+  m_text: Placeholder for Top scores 1 - 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c1d2a45dc1fdba84d8b020c9d6a6711b, type: 2}
   m_sharedMaterial: {fileID: 8448201661085462897, guid: c1d2a45dc1fdba84d8b020c9d6a6711b,
@@ -4918,6 +4923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9a10496d2a0f24499087df254250ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHighScore: 0
 --- !u!4 &2145817953
 Transform:
   m_ObjectHideFlags: 0

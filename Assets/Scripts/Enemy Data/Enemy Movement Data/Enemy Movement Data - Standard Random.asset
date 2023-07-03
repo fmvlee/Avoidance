@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9d846089f875f419ef019d41a8a7c9, type: 3}
   m_Name: Enemy Movement Data - Standard Random
   m_EditorClassIdentifier: 
-  sprite: {fileID: 9075965046567130796, guid: 5513fe6aa8c5cd5419f7394071ea73e0, type: 3}
   variedSpeed: 1
   speed: 0
   minSpeed: 3
@@ -22,13 +21,5 @@ MonoBehaviour:
   directionMaxCooldown: 2
   directionMinChangeAngle: -150
   directionMaxChangeAngle: 150
-  screenBorder: 20
+  screenBorder: 1
   movementType: 2
-  hasLifespan: 0
-  lifeSpan: 0
-  hasRandomLifeSpan: 0
-  minLifeSpan: 0
-  maxLifeSpan: 0
-  isPulsing: 1
-  pulseTo: {x: 0.5, y: 0.5, z: 0.5}
-  pulseSpeed: 0.8

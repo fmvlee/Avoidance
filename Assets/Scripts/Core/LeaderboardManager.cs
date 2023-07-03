@@ -9,10 +9,12 @@ using UnityEngine.SocialPlatforms.Impl;
 using System.Threading.Tasks;
 using Unity.Services.Leaderboards.Models;
 using Newtonsoft.Json.Linq;
+using System;
 
 public class LeaderboardManager : MonoBehaviour
 {
     const string leaderboardId = "Avoidance";
+    public int playerHighScore = 0;
 
     private async void Awake()
     {
@@ -21,6 +23,7 @@ public class LeaderboardManager : MonoBehaviour
         {            
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
+        UpdatePlayerHiScore();
     }
 
     public async void AddScore(int score)
@@ -31,14 +34,15 @@ public class LeaderboardManager : MonoBehaviour
         Debug.Log($"Player Name: {playerEntry.PlayerName}");
     }
 
-    public async void GetPlayerScore()
+    public async void UpdatePlayerHiScore()
     {
         var scoreResponse = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardId);
+        playerHighScore = Convert.ToInt32(scoreResponse.Score);
         Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
     public async void GetHighScore()
-    {
+    {   
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }

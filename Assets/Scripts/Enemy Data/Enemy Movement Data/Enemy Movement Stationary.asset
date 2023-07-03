@@ -21,5 +21,5 @@ MonoBehaviour:
   directionMaxCooldown: 0
   directionMinChangeAngle: 0
   directionMaxChangeAngle: 0
-  screenBorder: 50
+  screenBorder: 1
   movementType: 0

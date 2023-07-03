@@ -24,7 +24,7 @@ public class InputControls : MonoBehaviour
         if(GameManager.Instance.currentState == GameManager.GameState.GameOver)
         {
             if(Keyboard.current.anyKey.wasPressedThisFrame){
-                Destroy(GameManager.Instance);
+                Destroy(GameManager.Instance.gameObject);
                 SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
             }
         }

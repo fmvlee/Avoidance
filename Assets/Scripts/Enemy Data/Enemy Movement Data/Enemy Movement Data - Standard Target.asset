@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9d846089f875f419ef019d41a8a7c9, type: 3}
   m_Name: Enemy Movement Data - Standard Target
   m_EditorClassIdentifier: 
-  sprite: {fileID: 9075965046567130796, guid: 5513fe6aa8c5cd5419f7394071ea73e0, type: 3}
   variedSpeed: 1
   speed: 0
-  minSpeed: 4
-  maxSpeed: 4.4
+  minSpeed: 3.2
+  maxSpeed: 4
   rotationSpeed: 360
   directionMinCooldown: 0.1
   directionMaxCooldown: 0.3
   directionMinChangeAngle: -150
   directionMaxChangeAngle: 150
-  screenBorder: 20
+  screenBorder: 1
   movementType: 1

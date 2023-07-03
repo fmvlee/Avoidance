@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b5379784f50354ebd8611cd31c717f, type: 3}
-  m_Name: Spawn 003
+  m_Script: {fileID: 11500000, guid: 5c2d28752217a5c478c14e80677e79b6, type: 3}
+  m_Name: Life Data - Mid
   m_EditorClassIdentifier: 
-  spawnItem: {fileID: 8785365310204302567, guid: b5460c82a5c7e334bb90974712e3804d,
-    type: 3}
-  spawnQuantity: 10
-  spawnInterval: 3
-  spawnPattern: 0
+  hasLifespan: 1
+  lifespan: 0
+  randomiseLifespan: 1
+  minLifespan: 8
+  maxLifespan: 12
