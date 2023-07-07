@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS ESC TO EXIT OR ANY KEY TO CONTINUE
+  m_text: PRESS  ANY KEY TO CONTINUE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c1d2a45dc1fdba84d8b020c9d6a6711b, type: 2}
   m_sharedMaterial: {fileID: 8448201661085462897, guid: c1d2a45dc1fdba84d8b020c9d6a6711b,
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -478.5628, y: 68.143036, z: -476.34802, w: -67.84122}
+  m_margin: {x: -852.9516, y: 68.143036, z: -872.57623, w: -67.84122}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

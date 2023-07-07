@@ -1,27 +1,42 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class MenuManager : MonoBehaviour
-{    
+{
+    private LeaderboardManager leaderboard;
+    private GameObject hiScore;
+    private GameObject globalHiScore;
+
+    //private bool scoresUpdated = false;
+
+    private void Awake()
+    {
+        leaderboard = GetComponent<LeaderboardManager>();
+        hiScore = GameObject.FindWithTag("HiScoreText");
+        globalHiScore = GameObject.FindWithTag("GlobalHiScoreText");
+    }
+
+    private void Start()
+    {
+            //NOT WORKING AS THE SCORES ARE NOT UPDATED IN TIME FOR START
+        hiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "You Scored: " + leaderboard.playerHighScore.ToString("D8");
+        globalHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "You Scored: " + leaderboard.globalHighScore.ToString("D8");
+    }
     private void Update()
     {
-        // Listen for any key to be pressed - if ESC then exit
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Debug.Log("Exit Game");
-            //Exit if in the editor - else close application
-            #if UNITY_EDITOR
-                        UnityEditor.EditorApplication.isPlaying = false;
-            #else
-                    Application.Quit();
-            #endif
-        }
-        else if(Keyboard.current.anyKey.wasPressedThisFrame)
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
         {
             // Load the game
             Debug.Log("Load game");
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         }
+        //if (!scoresUpdated)
+       // {
+            
+          //  scoresUpdated = true;
+       // }
     }
 }

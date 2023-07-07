@@ -9,6 +9,8 @@ TagManager:
   - HiScoreText
   - Score
   - JustScored
+  - GlobalHiScoreText
+  - WaveText
   layers:
   - Default
   - TransparentFX

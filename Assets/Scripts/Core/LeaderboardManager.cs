@@ -15,6 +15,7 @@ public class LeaderboardManager : MonoBehaviour
 {
     const string leaderboardId = "Avoidance";
     public int playerHighScore = 0;
+    public int globalHighScore = 0;
 
     private async void Awake()
     {
@@ -24,6 +25,7 @@ public class LeaderboardManager : MonoBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
         UpdatePlayerHiScore();
+        UpdateGlobalHighScore();
     }
 
     public async void AddScore(int score)
@@ -41,9 +43,10 @@ public class LeaderboardManager : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
-    public async void GetHighScore()
+    public async void UpdateGlobalHighScore()
     {   
-        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId, new GetScoresOptions { Limit = 1 });
+        globalHighScore = Convert.ToInt32(scoresResponse.Results[0].Score);
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 }

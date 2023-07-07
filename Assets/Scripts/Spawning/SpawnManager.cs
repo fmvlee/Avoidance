@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,16 @@ public class SpawnManager : MonoBehaviour
     public enum SpawnPattern { OnPlayer, Random }
     //NEED TO ADD A SPAWN PATTERN ENUM HERE
 
+    private GameObject waveText;
+
     private int currentWave;
     private float spawnTime;
 
-    private void Start()
+    private void Awake()
     {
         currentWave = 0;
         spawnTime = 0f;
+        waveText = GameObject.FindWithTag("WaveText");
     }
     private void Update()
     {
@@ -34,12 +38,13 @@ public class SpawnManager : MonoBehaviour
 
             if (spawnTime > spawnWaves[currentWave].waveTime)
             {
+                UpdateWaveGUIText();
                 Debug.Log("Spawn Wave: " + spawnWaves[currentWave].waveName + " at a time of " + spawnTime);
                 Debug.Log("Spawnables in wave: " + (spawnWaves[currentWave].spawnables.Count));
                 // Spawn the wave
                 for (int i = 0; i < spawnWaves[currentWave].spawnables.Count; i++)
                 {
-                    Debug.Log("Start coroutine for: "   + spawnWaves[currentWave].spawnables[i].name);
+                    Debug.Log("Start coroutine for: " + spawnWaves[currentWave].spawnables[i].name);
                     StartCoroutine(Spawn(spawnWaves[currentWave].spawnables[i]));
                 }
                 currentWave++;
@@ -47,12 +52,17 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private void UpdateWaveGUIText()
+    {
+        //NEED TO ADD ANIMATION IN HERE
+        waveText.GetComponent<TMPro.TextMeshProUGUI>().text = spawnWaves[currentWave].waveName + "!";
+    }
+
     IEnumerator Spawn(Spawn spawn)
     {        
         for(int i = 0; i < spawn.spawnQuantity; i++)
         {
             //Instantiate
-            Debug.Log(spawn.name);
             Vector3 spawnPosition = new Vector3(0, 0, 0);
             switch (spawn.spawnPattern)
             {
@@ -71,6 +81,6 @@ public class SpawnManager : MonoBehaviour
 
     private Vector2 RandomScreenPosition()
     {
-        return Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
+        return Camera.main.ViewportToWorldPoint(new Vector2(UnityEngine.Random.value, UnityEngine.Random.value));
     }
 }
