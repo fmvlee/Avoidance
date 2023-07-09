@@ -58,4 +58,9 @@ public class ScoreManager : MonoBehaviour
             playerHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "Your HI Score: " + leaderboard.playerHighScore.ToString("D8");
         }
     }
+
+    public void AddScore(int additionalScore)
+    {
+        score += additionalScore;
+    }
 }

@@ -12,6 +12,8 @@ public class LifeManager : MonoBehaviour
     public GameObject[] livesImages;
     [SerializeField]
     public Sprite lifeLostSprite;
+    [SerializeField]
+    public Sprite lifeSprite;
     private Animator animator;
 
     [SerializeField]
@@ -33,17 +35,28 @@ public class LifeManager : MonoBehaviour
 
     public void RemoveLifeImage()
     {
-
         Image lifeImage = livesImages[lives].GetComponent<Image>();
         lifeImage.GetComponent<Animator>().SetTrigger("StartPop");
         lifeImage.sprite = lifeLostSprite;
         lifeImage.color = new Color(lifeImage.color.r, lifeImage.color.g, lifeImage.color.b, 0.33f);
     }
 
-   /* public void AddLife()
+    public void AddLifeImage()
     {
-        lives++;
-    }*/
+        Image lifeImage = livesImages[lives].GetComponent<Image>();
+        lifeImage.GetComponent<Animator>().SetTrigger("StartPop");
+        lifeImage.sprite = lifeSprite;
+        lifeImage.color = new Color(lifeImage.color.r, lifeImage.color.g, lifeImage.color.b, 1f);
+    }
+
+    public void AddLife()
+    {
+        if (lives < 3)
+        {
+            AddLifeImage();
+            lives++;            
+        }
+    }
 
     public void RemoveLife()
     {

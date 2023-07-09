@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public LifeManager lifeManager;
+    public ScoreManager scoreManager;
 
     public GameEvent gameStartEvent;
     public GameEvent gameStartCountdownEvent;

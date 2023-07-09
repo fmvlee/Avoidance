@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
     private Pulse pulse;
     private Rigidbody2D rb;
 
+    private Spawner childSpawner;
+
     void Start()
     {
         // Get components to disable/enable
@@ -40,7 +42,12 @@ public class Enemy : MonoBehaviour
         // Get the sprite render and set the could to the starting alpha
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Mathf.Clamp(startAlpha,0 , 1));
-        
+
+        if (GetComponent<Spawner>())
+        {
+            childSpawner = GetComponent<Spawner>();
+        }
+
         // Disable all but the sprite render
         DisableComponents();
         // Start fade in routine
@@ -91,6 +98,10 @@ public class Enemy : MonoBehaviour
         } else
         {
             EnableComponents();
+            if (childSpawner)
+            {
+                childSpawner.enabled = true;
+            }
         }
     }
 }

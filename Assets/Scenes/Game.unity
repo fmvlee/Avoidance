@@ -3668,6 +3668,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1664284116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6233247431006478513, guid: 7c6b1f27478673b44a421901df02b007,
+    type: 3}
+  m_PrefabInstance: {fileID: 1218324853768308220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da85ca6bb5fbd9048a6ee73bd54fa8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1726417602 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1389744500769966652, guid: aec00636f3246af4989d327861846560,
@@ -5210,6 +5222,11 @@ PrefabInstance:
       objectReference: {fileID: 369927373}
     - target: {fileID: 1586206609436954519, guid: 7c6b1f27478673b44a421901df02b007,
         type: 3}
+      propertyPath: scoreManager
+      value: 
+      objectReference: {fileID: 1664284116}
+    - target: {fileID: 1586206609436954519, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
       propertyPath: gameStartCountdownEvent
       value: 
       objectReference: {fileID: 11400000, guid: c1e90dc2a31d8564c8c8f166b8b4614b,
@@ -5249,6 +5266,12 @@ PrefabInstance:
       propertyPath: 'audioClips.Array.data[4]'
       value: 
       objectReference: {fileID: 8300000, guid: e70529449c1a14847b3afb1b6eb72f7e, type: 3}
+    - target: {fileID: 4962300291061533494, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: lifeSprite
+      value: 
+      objectReference: {fileID: 4334783836991956000, guid: 7952eae140b0f4344a9c873b10bd2c5b,
+        type: 3}
     - target: {fileID: 4962300291061533494, guid: 7c6b1f27478673b44a421901df02b007,
         type: 3}
       propertyPath: gameOverClip
