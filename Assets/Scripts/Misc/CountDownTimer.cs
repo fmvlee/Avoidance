@@ -7,21 +7,34 @@ public class CountDownTimer : MonoBehaviour
     public int countDownTime;
     public GameObject countDownText;
 
+    [SerializeField]
+    private AudioClip countDownSound;
+    [SerializeField]
+    private AudioClip countDownCompleteSound;
+
+    private AudioSource countDownAudioSource;
     void Start()
     {
-        
-        StartCoroutine(StartCountDown());
+        countDownAudioSource = GetComponent<AudioSource>();
+       // StartCoroutine(StartCountDown());
     }
 
-    IEnumerator StartCountDown()
+    public void TriggerStart()
+    {
+        StartCoroutine(StartCountDown());
+    }
+    private IEnumerator StartCountDown()
     {
         while (countDownTime > 0)
         {
+            countDownAudioSource.Play();
             countDownText.GetComponent<TMPro.TextMeshProUGUI>().text = countDownTime.ToString();  
             yield return new WaitForSeconds(1f);
             countDownTime--;
         }
 
+        countDownAudioSource.clip = countDownCompleteSound;
+        countDownAudioSource.Play();
         countDownText.GetComponent<TMPro.TextMeshProUGUI>().text = "GO!";
         
         // Start Game

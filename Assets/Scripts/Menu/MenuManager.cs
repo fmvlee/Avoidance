@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -19,12 +20,6 @@ public class MenuManager : MonoBehaviour
         globalHiScore = GameObject.FindWithTag("GlobalHiScoreText");
     }
 
-    private void Start()
-    {
-            //NOT WORKING AS THE SCORES ARE NOT UPDATED IN TIME FOR START
-        hiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "You Scored: " + leaderboard.playerHighScore.ToString("D8");
-        globalHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "You Scored: " + leaderboard.globalHighScore.ToString("D8");
-    }
     private void Update()
     {
         if (Keyboard.current.anyKey.wasPressedThisFrame)
@@ -33,10 +28,9 @@ public class MenuManager : MonoBehaviour
             Debug.Log("Load game");
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         }
-        //if (!scoresUpdated)
-       // {
-            
-          //  scoresUpdated = true;
-       // }
+
+        // Updates the score in the UI - Would be better to move to start metod
+        hiScore.GetComponent<TMPro.TextMeshProUGUI>().text = leaderboard.playerHighScore.ToString("D8");
+        globalHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = leaderboard.globalHighScore.ToString("D8");
     }
 }

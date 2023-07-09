@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public LifeManager lifeManager;
 
     public GameEvent gameStartEvent;
+    public GameEvent gameStartCountdownEvent;
+
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -30,16 +33,31 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         currentState = GameState.NotStarted;
+        player = GameObject.FindWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(TriggerStart());
     }
 
     public void GameOver()
     {
         currentState = GameState.GameOver;
     }
+
+    private IEnumerator TriggerStart()
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(1.4f);
+        gameStartCountdownEvent.TriggerEvent();
+    }
+
     public void StartGame()
     {
         currentState = GameState.Playing;
         gameStartEvent.TriggerEvent();
         player.SetActive(true);
-    }   
+    }
 }

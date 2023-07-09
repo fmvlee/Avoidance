@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b5379784f50354ebd8611cd31c717f, type: 3}
   m_Name: Spawn 003
   m_EditorClassIdentifier: 
-  spawnItem: {fileID: 8785365310204302567, guid: b5460c82a5c7e334bb90974712e3804d,
+  spawnItem: {fileID: 6087828185020832824, guid: 7d4611592d3666843bde331eb365def0,
     type: 3}
   spawnQuantity: 10
   spawnInterval: 3

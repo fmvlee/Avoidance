@@ -17,11 +17,16 @@ public class SpawnManager : MonoBehaviour
     private int currentWave;
     private float spawnTime;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip[] audioClips;
+
     private void Awake()
     {
         currentWave = 0;
         spawnTime = 0f;
         waveText = GameObject.FindWithTag("WaveText");
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -55,9 +60,17 @@ public class SpawnManager : MonoBehaviour
     private void UpdateWaveGUIText()
     {
         //NEED TO ADD ANIMATION IN HERE
+        waveText.SetActive(true);
         waveText.GetComponent<TMPro.TextMeshProUGUI>().text = spawnWaves[currentWave].waveName + "!";
+        waveText.GetComponent<Animator>().SetTrigger("StartPop");
+        StartCoroutine(HideWaveText());
     }
 
+    IEnumerator HideWaveText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        waveText.SetActive(false);
+    }
     IEnumerator Spawn(Spawn spawn)
     {        
         for(int i = 0; i < spawn.spawnQuantity; i++)
@@ -75,6 +88,7 @@ public class SpawnManager : MonoBehaviour
                     break;
             }
             GameObject spawned = Instantiate(spawn.spawnItem,spawnPosition, Quaternion.identity);
+            PlaySpawnSound();
             yield return new WaitForSeconds(spawn.spawnInterval);
         }      
     }
@@ -82,5 +96,12 @@ public class SpawnManager : MonoBehaviour
     private Vector2 RandomScreenPosition()
     {
         return Camera.main.ViewportToWorldPoint(new Vector2(UnityEngine.Random.value, UnityEngine.Random.value));
+    }
+
+    private void PlaySpawnSound()
+    {
+        int randomClip = UnityEngine.Random.Range(0, audioClips.Length);
+        audioSource.clip = audioClips[randomClip];
+        audioSource.Play();
     }
 }
