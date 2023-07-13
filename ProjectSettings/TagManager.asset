@@ -12,6 +12,8 @@ TagManager:
   - GlobalHiScoreText
   - WaveText
   - Lives
+  - MainCanvas
+  - RecordingCanvas
   layers:
   - Default
   - TransparentFX
