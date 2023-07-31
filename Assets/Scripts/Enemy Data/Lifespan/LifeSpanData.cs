@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Create a menu option
 [CreateAssetMenu(fileName = "Life Data", menuName = "LifeSpan Data")]
+
+// Stroe the date required for the lifespan
 public class LifeSpanData : ScriptableObject
 {
     public bool hasLifespan = false;

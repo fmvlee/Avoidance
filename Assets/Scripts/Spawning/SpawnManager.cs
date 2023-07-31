@@ -87,7 +87,14 @@ public class SpawnManager : MonoBehaviour
                     spawnPosition = new Vector3(spawnXY.x, spawnXY.y, 0f);
                     break;
             }
-            GameObject spawned = Instantiate(spawn.spawnItem,spawnPosition, Quaternion.identity);
+
+            if (spawn.spawnItem.tag == "Enemy")
+            {
+                GameObject spawned = Instantiate(spawn.spawnItem, spawnPosition, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0, 360))));
+            } else
+            {
+                GameObject spawned = Instantiate(spawn.spawnItem, spawnPosition, Quaternion.identity);
+            }
             PlaySpawnSound();
             yield return new WaitForSeconds(spawn.spawnInterval);
         }      

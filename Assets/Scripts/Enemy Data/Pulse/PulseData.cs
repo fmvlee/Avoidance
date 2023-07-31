@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Create a menu option
 [CreateAssetMenu(fileName = "Pulse Data", menuName = "Pulse Data")]
+
+// This stores all the data for the pulsing effect
 public class PulseData : ScriptableObject
 {
     public bool isPulsing = true;

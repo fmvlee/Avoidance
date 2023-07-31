@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
     private Pulse pulse;
     private Rigidbody2D rb;
 
+    // The enemies spawner
     private Spawner childSpawner;
 
     void Start()
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Mathf.Clamp(startAlpha,0 , 1));
 
+        // If the enemy has a spawner then get it
         if (GetComponent<Spawner>())
         {
             childSpawner = GetComponent<Spawner>();
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour
         movement.enabled = true;
         lifeSpan.enabled = true;
         pulse.enabled = true;
+        // Layer is the active layer
         gameObject.layer = 6;
     }
 
@@ -80,10 +83,10 @@ public class Enemy : MonoBehaviour
         // Wait for fadeInTime
         yield return new WaitForSeconds(fadeInWaitTime);
         // Enable relevent components
-        StartCoroutine(FadeInAlpha());
-        
+        StartCoroutine(FadeInAlpha());        
     }
 
+    // Fades the enemy into view
     IEnumerator FadeInAlpha()
     {
         // Fade in the Alpha
@@ -97,6 +100,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(FadeInAlpha());
         } else
         {
+            // Enable the components and child spawner
             EnableComponents();
             if (childSpawner)
             {

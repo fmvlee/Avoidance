@@ -73,6 +73,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    // Loads the enemy data from the scriptable object
     private void SetupEnemyData()
     {
         variedSpeed = enemyData.variedSpeed;
@@ -88,6 +89,7 @@ public class EnemyMovement : MonoBehaviour
         currentMovementType = enemyData.movementType;
     }
 
+    // Update the movement within FixedUpdate
     private void FixedUpdate()
     {     
         // Check the game is playing
@@ -105,35 +107,48 @@ public class EnemyMovement : MonoBehaviour
         // Reduce direction cooldown by the time passed
         directionCooldown -= Time.deltaTime;
 
+        // Switch statement to complete action dependant on the movement type
         switch (currentMovementType)
         { 
+            // TargetPlayer goes towards that player
             case MovementType.TargetPlayer:
-                Debug.Log("target player");
+                // If the direction change cooldown has completed
                 if (directionCooldown <= 0)
                 {
+                    // If the player is not immune
                     if (!target.GetComponent<EnemyCollision>().isImmune)
                     {
-                        Vector2 enemyToPlayeer = target.transform.position - transform.position;
-                        targetDirection = enemyToPlayeer.normalized;                        
+                        // Calculate from the enemy to the player
+                        Vector2 enemyToPlayer = target.transform.position - transform.position;
+                        // Set the latest target direction
+                        targetDirection = enemyToPlayer.normalized;   
+                    // Else move randomly
                     } else
                     {
+                        // Change direction randomly
                         ChangeDirection();
                     }
+                    // Rotate
                     RotateToTarget();
                 }
                 break;
+            // Random moves the Enemy in random, unknown movements
             case MovementType.Random:
+                // If the direction change cooldown has completed
                 if (directionCooldown <= 0)
                 {
+                    // Change direction randomly
                     ChangeDirection();
                 }
+                // Rotate
                 RotateToTarget();
-                Debug.Log("Random Movement");
                 break;
+            // Stationary means do not move but spin on the spot
             case MovementType.Stationary:
+                // Stop any movement
                 rb.constraints = RigidbodyConstraints2D.FreezePosition;
-                rb.rotation += rotationSpeed * Time.deltaTime; //THIS NEEDSchecking **********************
-                Debug.Log("Stationary");
+                // Spin on the spot
+                rb.rotation += rotationSpeed * Time.deltaTime;
                 break;
         }
 
@@ -144,9 +159,13 @@ public class EnemyMovement : MonoBehaviour
     // Change the enemy direction to the target direction
     private void ChangeDirection()
     {
+        // Get a random angle to change by
         float angleChange = Random.Range(directionMinChange, directionMaxChange);
+        // Change the rotation by the random angle
         Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
+        // Set target direction
         targetDirection = rotation * targetDirection;
+        // Set a random cooldown for the next movement
         directionCooldown = Random.Range(directionMinCooldown, directionMaxCooldown);
     }
 

@@ -42,8 +42,10 @@ public class EnemyCollision : MonoBehaviour
         isImmune = true;
         // Start the immunity animation
         animator.SetBool("Immune", true);
+        // Move the player to the immune layer so they can pass through enemies
+        gameObject.layer = 8;
         // Deactivate the players collider so the player passes through enemies
-        GetComponent<CircleCollider2D>().enabled = false;
+        //GetComponent<CircleCollider2D>().enabled = false;
         // End immunity
         StartCoroutine(EndImmunity());
     }
@@ -54,6 +56,8 @@ public class EnemyCollision : MonoBehaviour
         // Wait the immuneTime before ending immunity
         yield return new WaitForSeconds(immuneTime);
         isImmune = false;
+        // Move the player back to the default layer
+        gameObject.layer = 0;
         // Enable the players collider
         GetComponent<CircleCollider2D>().enabled = true;
         // Stop the animation

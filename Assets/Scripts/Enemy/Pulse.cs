@@ -26,8 +26,10 @@ public class Pulse : MonoBehaviour
     // Where the object has scaled to so far
     private float scaledAmount;
 
+    // Awake called before Start
     private void Awake()
     {
+        // Initialise pulse variables from the pulse data
         isPulsing = pulseData.isPulsing;
         pulseFactor = pulseData.pulseFactor;
         pulseSpeed = pulseData.pulseSpeed;

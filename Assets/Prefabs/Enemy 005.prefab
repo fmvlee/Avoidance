@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e1bf9438191d5458bd933ee0ee8844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEnemy: {fileID: 3312709410406715673, guid: aaed778f3686dd246886a01c3e25ee18,
+  spawnObject: {fileID: 3312709410406715673, guid: aaed778f3686dd246886a01c3e25ee18,
     type: 3}
   timeBetweenSpawn: 0.75
 --- !u!60 &5633612224830883445
