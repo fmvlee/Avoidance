@@ -28,15 +28,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             ""id"": ""be0ba7d4-37d0-4671-a333-db36271e7ed5"",
             ""actions"": [
                 {
-                    ""name"": ""AbillityAction"",
-                    ""type"": ""Button"",
-                    ""id"": ""6f91734c-5208-41d7-be07-d9baf81f937e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""49eb1df5-5c69-44f9-8433-f8db70e7acb7"",
@@ -44,20 +35,18 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6a7f31c-6d44-42f3-bbb4-4a5d7327c030"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""63e93f4a-82ce-42f8-814e-8adb1880a9dd"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""AbillityAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""9890e30b-c68d-4f0e-90a4-3bff0ebdc63b"",
@@ -167,6 +156,17 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e95b23a8-0dea-436d-b942-16f135493fd8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,8 +187,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
 }");
         // PlayerActionMap
         m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
-        m_PlayerActionMap_AbillityAction = m_PlayerActionMap.FindAction("AbillityAction", throwIfNotFound: true);
         m_PlayerActionMap_Movement = m_PlayerActionMap.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerActionMap_Ability = m_PlayerActionMap.FindAction("Ability", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -250,14 +250,14 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     // PlayerActionMap
     private readonly InputActionMap m_PlayerActionMap;
     private List<IPlayerActionMapActions> m_PlayerActionMapActionsCallbackInterfaces = new List<IPlayerActionMapActions>();
-    private readonly InputAction m_PlayerActionMap_AbillityAction;
     private readonly InputAction m_PlayerActionMap_Movement;
+    private readonly InputAction m_PlayerActionMap_Ability;
     public struct PlayerActionMapActions
     {
         private @GameControls m_Wrapper;
         public PlayerActionMapActions(@GameControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @AbillityAction => m_Wrapper.m_PlayerActionMap_AbillityAction;
         public InputAction @Movement => m_Wrapper.m_PlayerActionMap_Movement;
+        public InputAction @Ability => m_Wrapper.m_PlayerActionMap_Ability;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -267,22 +267,22 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Add(instance);
-            @AbillityAction.started += instance.OnAbillityAction;
-            @AbillityAction.performed += instance.OnAbillityAction;
-            @AbillityAction.canceled += instance.OnAbillityAction;
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Ability.started += instance.OnAbility;
+            @Ability.performed += instance.OnAbility;
+            @Ability.canceled += instance.OnAbility;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
         {
-            @AbillityAction.started -= instance.OnAbillityAction;
-            @AbillityAction.performed -= instance.OnAbillityAction;
-            @AbillityAction.canceled -= instance.OnAbillityAction;
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Ability.started -= instance.OnAbility;
+            @Ability.performed -= instance.OnAbility;
+            @Ability.canceled -= instance.OnAbility;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -311,7 +311,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     }
     public interface IPlayerActionMapActions
     {
-        void OnAbillityAction(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
 }

@@ -6,15 +6,6 @@
             "id": "be0ba7d4-37d0-4671-a333-db36271e7ed5",
             "actions": [
                 {
-                    "name": "AbillityAction",
-                    "type": "Button",
-                    "id": "6f91734c-5208-41d7-be07-d9baf81f937e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Movement",
                     "type": "Value",
                     "id": "49eb1df5-5c69-44f9-8433-f8db70e7acb7",
@@ -22,20 +13,18 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Ability",
+                    "type": "Button",
+                    "id": "d6a7f31c-6d44-42f3-bbb4-4a5d7327c030",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "63e93f4a-82ce-42f8-814e-8adb1880a9dd",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "AbillityAction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "9890e30b-c68d-4f0e-90a4-3bff0ebdc63b",
@@ -145,6 +134,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e95b23a8-0dea-436d-b942-16f135493fd8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

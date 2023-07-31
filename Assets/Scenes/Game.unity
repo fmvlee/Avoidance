@@ -501,6 +501,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &369927388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369927373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7efe7e32eb18044bd082a3e740ac62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnSprite: {fileID: 1521868056461886617, guid: db1dee2f75d695544b0017d778436bd8,
+    type: 3}
+  cooldownTime: 2.5
+  cooldown: 0
 --- !u!1 &409964291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,6 +4230,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7122222101028774620, guid: 8aa420f39ee887d4fba11a1ecf57a207,
         type: 3}
+      propertyPath: spawnSprite
+      value: 
+      objectReference: {fileID: 1521868056461886617, guid: db1dee2f75d695544b0017d778436bd8,
+        type: 3}
+    - target: {fileID: 7122222101028774620, guid: 8aa420f39ee887d4fba11a1ecf57a207,
+        type: 3}
       propertyPath: screenBorder
       value: 10
       objectReference: {fileID: 0}
@@ -4235,4 +4257,8 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 369927381}
+    - targetCorrespondingSourceObject: {fileID: 2731633768168535476, guid: 8aa420f39ee887d4fba11a1ecf57a207,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 369927388}
   m_SourcePrefab: {fileID: 100100000, guid: 8aa420f39ee887d4fba11a1ecf57a207, type: 3}
