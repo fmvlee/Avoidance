@@ -99,5 +99,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeOutSpeed: 0.1
-  fadeOutAmount: 0.2
-  startAlpha: 1
+  fadeOutAmount: 0.25
+  startAlpha: 0.8

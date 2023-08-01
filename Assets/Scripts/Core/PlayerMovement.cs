@@ -7,18 +7,22 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {    
+    // Variable for movement
     [SerializeField]
     private float movementSpeed;
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
     private float screenBorder;
-
-    private GameControls gameControls;
-    private Rigidbody2D rb;
     private Vector2 movementInput;
     private Vector2 smoothedMovement;
     private Vector2 movementInputSmoothVelocity;
+
+    // RB to move
+    private Rigidbody2D rb;
+    // Game controller
+    private GameControls gameControls;
+    // The main camera
     private Camera screenCamera;
     
     void Awake()

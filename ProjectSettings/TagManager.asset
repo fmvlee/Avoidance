@@ -15,6 +15,7 @@ TagManager:
   - MainCanvas
   - RecordingCanvas
   - Immune
+  - AbilitySlider
   layers:
   - Default
   - TransparentFX
