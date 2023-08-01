@@ -21,6 +21,14 @@ public class ScoreManager : MonoBehaviour
     // Manages leaderboard
     private LeaderboardManager leaderboard;
 
+    private void Awake()
+    {
+        // Find score text to update
+        justScoreText = GameObject.FindGameObjectWithTag("JustScored");
+        playerHiScore = GameObject.FindGameObjectWithTag("HiScoreText");
+        // Hide the gameover panel
+        GameObject.FindGameObjectWithTag("GameOverPanel").SetActive(false); 
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -60,11 +68,7 @@ public class ScoreManager : MonoBehaviour
 
     // Called on GameOver
     public void GameOver()
-    {
-        // Find score text to update
-        justScoreText = GameObject.FindGameObjectWithTag("JustScored");
-        playerHiScore = GameObject.FindGameObjectWithTag("HiScoreText");
-
+    { 
         // Add score to the unity service
         leaderboard.AddScore(score);
         leaderboard.UpdatePlayerHiScore();

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b5379784f50354ebd8611cd31c717f, type: 3}
   m_Name: Spawn 004
   m_EditorClassIdentifier: 
-  spawnItem: {fileID: 2758820919604492293, guid: 154f88925f9f71b4eb65d12f544a21ba,
+  spawnItem: {fileID: 9211717794064201097, guid: 90392bc82675a174389c8d35b3452a0d,
     type: 3}
-  spawnQuantity: 200
-  spawnInterval: 1
+  spawnQuantity: 2
+  spawnInterval: 0.5
   spawnPattern: 1

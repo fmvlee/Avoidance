@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnItem: {fileID: 9211717794064201097, guid: 90392bc82675a174389c8d35b3452a0d,
     type: 3}
-  spawnQuantity: 2
+  spawnQuantity: 1
   spawnInterval: 5
   spawnPattern: 1

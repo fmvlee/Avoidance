@@ -16,6 +16,7 @@ TagManager:
   - RecordingCanvas
   - Immune
   - AbilitySlider
+  - GameOverPanel
   layers:
   - Default
   - TransparentFX

@@ -1653,7 +1653,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131377588}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: dbd07187470c3c44ea4cf6ffb8bf1203, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 92b48d9f4416d914f9570ae786ea3044, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 519420031}
@@ -1663,7 +1663,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -1671,7 +1671,8 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url: file://C:/Users/Lee-Laptop/Desktop/Uni/Final Project/Unity/Avoidance/Assets/StreamingAssets/Recording
+    for Menu v2.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1

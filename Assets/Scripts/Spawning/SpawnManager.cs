@@ -7,10 +7,9 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
     public List<SpawnWave> spawnWaves;
-    // Spawn Pattern
+    // Spawn Pattern Enum
     [SerializeField]
     public enum SpawnPattern { OnPlayer, Random }
-    //NEED TO ADD A SPAWN PATTERN ENUM HERE
 
     private GameObject waveText;
 
@@ -59,7 +58,7 @@ public class SpawnManager : MonoBehaviour
 
     private void UpdateWaveGUIText()
     {
-        //NEED TO ADD ANIMATION IN HERE
+        //
         waveText.SetActive(true);
         waveText.GetComponent<TMPro.TextMeshProUGUI>().text = spawnWaves[currentWave].waveName + "!";
         waveText.GetComponent<Animator>().SetTrigger("StartPop");

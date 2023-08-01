@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f76ccb743c34244a6eed08f35da3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeSpanData: {fileID: 11400000, guid: b8927e79cc706de42afd44e0d4b87f85, type: 2}
+  lifeSpanData: {fileID: 11400000, guid: 2c7f6a046e54c3f41904a0a685e5a71e, type: 2}
   hasLifespan: 0
   lifespan: 20
   randomiseLifespan: 0

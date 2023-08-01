@@ -15,7 +15,6 @@ MonoBehaviour:
   waveName: Wave Two
   waveTime: 20
   spawnables:
-  - {fileID: 11400000, guid: d60c996b83e8f62459c3eb2bf704745b, type: 2}
   - {fileID: 11400000, guid: c589f84e54bec484e8ce4dc481feedfb, type: 2}
   - {fileID: 11400000, guid: e734b8c989bba7d47b9d5cf20e7995b0, type: 2}
-  - {fileID: 11400000, guid: 0127b1225435e2845beb6ab33751278d, type: 2}
+  - {fileID: 11400000, guid: e13636fe4d5848c4686d34c103bf0476, type: 2}

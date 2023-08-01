@@ -15,5 +15,5 @@ MonoBehaviour:
   spawnItem: {fileID: 3081593286342013095, guid: f4315c953f7f7f2469f4be02710d552f,
     type: 3}
   spawnQuantity: 12
-  spawnInterval: 0.8
+  spawnInterval: 0.7
   spawnPattern: 1

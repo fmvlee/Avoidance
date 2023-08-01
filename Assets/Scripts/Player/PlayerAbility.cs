@@ -48,13 +48,6 @@ public class PlayerAbility : MonoBehaviour
                     StartCoroutine(AbilityCooldown());
                 }
             }
-
-            // Check if the ability key has been released
-            if (gameControls.PlayerActionMap.Ability.WasReleasedThisFrame() && !GameManager.Instance.player.GetComponent<EnemyCollision>().isImmune)
-            {
-                // Move to the default layer
-                gameObject.layer = 0;
-            }
         }
     }
 
@@ -65,6 +58,8 @@ public class PlayerAbility : MonoBehaviour
         yield return new WaitForSeconds(abilityUseTime);
         // Turn off ability
         isAbilityAvailable = false;
+        // Move to the default layer
+        gameObject.layer = 0;
         // Wait for cooldown time to complete
         yield return new WaitForSeconds(cooldownTime);
         // Activate the abilitly again

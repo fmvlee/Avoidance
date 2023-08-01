@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86a62b1923db4ed44ab757fa640cf636, type: 3}
-  m_Name: Wave Four
+  m_Name: Wave Six
   m_EditorClassIdentifier: 
-  waveName: Wave Four
-  waveTime: 55
+  waveName: Wave Six
+  waveTime: 85
   spawnables:
-  - {fileID: 11400000, guid: c589f84e54bec484e8ce4dc481feedfb, type: 2}
-  - {fileID: 11400000, guid: 12ba6c33045935145858599d443b0ef2, type: 2}
-  - {fileID: 11400000, guid: d60c996b83e8f62459c3eb2bf704745b, type: 2}
   - {fileID: 11400000, guid: e13636fe4d5848c4686d34c103bf0476, type: 2}
+  - {fileID: 11400000, guid: c589f84e54bec484e8ce4dc481feedfb, type: 2}
+  - {fileID: 11400000, guid: e734b8c989bba7d47b9d5cf20e7995b0, type: 2}
+  - {fileID: 11400000, guid: 12ba6c33045935145858599d443b0ef2, type: 2}

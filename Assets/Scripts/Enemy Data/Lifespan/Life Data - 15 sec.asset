@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2d28752217a5c478c14e80677e79b6, type: 3}
   m_Name: Life Data - 15 sec
   m_EditorClassIdentifier: 
-  hasLifespan: 0
-  lifespan: 20
+  hasLifespan: 1
+  lifespan: 15
   randomiseLifespan: 0
   minLifespan: 5
   maxLifespan: 20

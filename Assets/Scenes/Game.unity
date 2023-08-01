@@ -1273,11 +1273,11 @@ GameObject:
   - component: {fileID: 985943279}
   m_Layer: 5
   m_Name: Game Over Panel
-  m_TagString: Untagged
+  m_TagString: GameOverPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &985943278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3060,6 +3060,7 @@ GameObject:
   - component: {fileID: 1842310589}
   - component: {fileID: 1842310593}
   - component: {fileID: 1842310594}
+  - component: {fileID: 1842310595}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -3197,6 +3198,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 5e17b79205aeb7d42adcaa8f9944f9e3, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 985943277}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1842310595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842310588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461bea53b7aa8d3439faae77ffebacf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c1e90dc2a31d8564c8c8f166b8b4614b, type: 2}
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -4088,6 +4117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
         type: 3}
+      propertyPath: spawnWaves.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
       propertyPath: 'audioClips.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: d93edec17cbe71441b77fedd441745e7, type: 3}
@@ -4111,6 +4145,66 @@ PrefabInstance:
       propertyPath: 'audioClips.Array.data[4]'
       value: 
       objectReference: {fileID: 8300000, guid: e70529449c1a14847b3afb1b6eb72f7e, type: 3}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 12c72b83bd5c9f74eb7397e904d9a47d,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dd061a06f387da74b9b9039b35f522be,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a28ab8402e9464e44802f23a4e61db20,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c0a61f7a65c6641418b72a80e957b647,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0421919b508e82540ab862b6dc6f8906,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cc1d2943568c6734baf300d9c914cbbd,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c614469ebd6cfb458217f555e52badd,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a64d0610c54e9364e9d6c0e05fabd36b,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8652bad49d1b5d442985dd1eba913f39,
+        type: 2}
+    - target: {fileID: 3173184992318161343, guid: 7c6b1f27478673b44a421901df02b007,
+        type: 3}
+      propertyPath: 'spawnWaves.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7161da80946485d419ee5de3ea219b5d,
+        type: 2}
     - target: {fileID: 4962300291061533494, guid: 7c6b1f27478673b44a421901df02b007,
         type: 3}
       propertyPath: lifeSprite
