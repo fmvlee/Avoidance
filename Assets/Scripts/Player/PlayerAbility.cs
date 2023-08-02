@@ -12,18 +12,23 @@ public class PlayerAbility : MonoBehaviour
     [SerializeField]
     private GameObject spawnSprite;
 
+    [SerializeField]
+    private GameObject playerAbilityRing;
+
     // Variable for cooldown
     [SerializeField]
     private float cooldownTime = 5f;
     [SerializeField]
     private float abilityUseTime = 2.5f;
     private bool isAbilityAvailable;
+    private bool isAbilityActive;
     private bool hasCooldownStarted;
 
     void Awake()
     {
         // Initialise required variables
         isAbilityAvailable = true;
+        isAbilityActive = false;
         hasCooldownStarted = false;
         gameControls = new GameControls();
     }
@@ -34,7 +39,7 @@ public class PlayerAbility : MonoBehaviour
         if (GameManager.Instance.currentState == GameManager.GameState.Playing)
         {
             // Only perform if the ability available and the players not immune
-            if (gameControls.PlayerActionMap.Ability.IsPressed() && !GameManager.Instance.player.GetComponent<EnemyCollision>().isImmune && isAbilityAvailable)
+            if ((gameControls.PlayerActionMap.Ability.IsPressed() || isAbilityActive) && !GameManager.Instance.player.GetComponent<EnemyCollision>().isImmune && isAbilityAvailable)
             {
                 // Instantiate sprite to create blur effect
                 Instantiate(spawnSprite, gameObject.transform.position, gameObject.transform.rotation);
@@ -44,6 +49,7 @@ public class PlayerAbility : MonoBehaviour
                 if (!hasCooldownStarted)
                 {
                     // Start Cooldown
+                    isAbilityActive = true;
                     hasCooldownStarted = true;
                     StartCoroutine(AbilityCooldown());
                 }
@@ -58,6 +64,8 @@ public class PlayerAbility : MonoBehaviour
         yield return new WaitForSeconds(abilityUseTime);
         // Turn off ability
         isAbilityAvailable = false;
+        isAbilityActive = false;
+        playerAbilityRing.SetActive(false);
         // Move to the default layer
         gameObject.layer = 0;
         // Wait for cooldown time to complete
@@ -65,6 +73,7 @@ public class PlayerAbility : MonoBehaviour
         // Activate the abilitly again
         isAbilityAvailable = true;
         hasCooldownStarted = false;
+        playerAbilityRing.SetActive(true);
     }
     private void OnEnable()
     {

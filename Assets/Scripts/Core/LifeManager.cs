@@ -65,33 +65,41 @@ public class LifeManager : MonoBehaviour
     // Adds a life to the player
     public void AddLife()
     {
-        // Max lives = 3
-        if (lives < 3)
+        // Check Game Playing
+        if (GameManager.Instance.currentState == GameManager.GameState.Playing)
         {
-            // Update the life image and update the players lives
-            UpdateLifeImage("Add");
-            lives++;            
+            // Max lives = 3
+            if (lives < 3)
+            {
+                // Update the life image and update the players lives
+                UpdateLifeImage("Add");
+                lives++;
+            }
         }
     }
 
     // Removes a life from the player
     public void RemoveLife()
     {
-        // Trigger event on life lost
-        loseLifeEvent.TriggerEvent();
-        // Remove life and play sound
-        lives--;
-        audioSource.Play();
-        // Update the life images
-        UpdateLifeImage("Remove");  
-        // If no lives remain
-        if (lives == 0)
+        // Check Game Playing
+        if (GameManager.Instance.currentState == GameManager.GameState.Playing)
         {
-            // GAME OVER - Play gameover sound
-            audioSource.clip = gameOverClip;
+            // Trigger event on life lost
+            loseLifeEvent.TriggerEvent();
+            // Remove life and play sound
+            lives--;
             audioSource.Play();
-            // Trigger game over event
-            gameOverEvent.TriggerEvent();
+            // Update the life images
+            UpdateLifeImage("Remove");
+            // If no lives remain
+            if (lives == 0)
+            {
+                // GAME OVER - Play gameover sound
+                audioSource.clip = gameOverClip;
+                audioSource.Play();
+                // Trigger game over event
+                gameOverEvent.TriggerEvent();
+            }
         }
     }
 }

@@ -18,6 +18,9 @@ TagManager:
   - AbilitySlider
   - GameOverPanel
   - VidPlayer
+  - GameOverContinue
+  - Top5
+  - Top6to10
   layers:
   - Default
   - TransparentFX

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Pulse Data - Large and Slow
   m_EditorClassIdentifier: 
   isPulsing: 1
-  pulseFactor: 3
+  pulseFactor: 2
   pulseSpeed: 0.9

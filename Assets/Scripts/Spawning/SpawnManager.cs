@@ -74,28 +74,32 @@ public class SpawnManager : MonoBehaviour
     {        
         for(int i = 0; i < spawn.spawnQuantity; i++)
         {
-            //Instantiate
-            Vector3 spawnPosition = new Vector3(0, 0, 0);
-            switch (spawn.spawnPattern)
+            if (GameManager.Instance.currentState == GameManager.GameState.Playing)
             {
-                case (SpawnManager.SpawnPattern.OnPlayer):
-                    spawnPosition = GameManager.Instance.player.transform.position;
-                    break;
-                case (SpawnManager.SpawnPattern.Random):
-                    Vector2 spawnXY = RandomScreenPosition();
-                    spawnPosition = new Vector3(spawnXY.x, spawnXY.y, 0f);
-                    break;
-            }
+                //Instantiate
+                Vector3 spawnPosition = new Vector3(0, 0, 0);
+                switch (spawn.spawnPattern)
+                {
+                    case (SpawnManager.SpawnPattern.OnPlayer):
+                        spawnPosition = GameManager.Instance.player.transform.position;
+                        break;
+                    case (SpawnManager.SpawnPattern.Random):
+                        Vector2 spawnXY = RandomScreenPosition();
+                        spawnPosition = new Vector3(spawnXY.x, spawnXY.y, 0f);
+                        break;
+                }
 
-            if (spawn.spawnItem.tag == "Enemy")
-            {
-                GameObject spawned = Instantiate(spawn.spawnItem, spawnPosition, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0, 360))));
-            } else
-            {
-                GameObject spawned = Instantiate(spawn.spawnItem, spawnPosition, Quaternion.identity);
+                if (spawn.spawnItem.tag == "Enemy")
+                {
+                    GameObject spawned = Instantiate(spawn.spawnItem, spawnPosition, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0, 360))));
+                }
+                else
+                {
+                    GameObject spawned = Instantiate(spawn.spawnItem, spawnPosition, Quaternion.identity);
+                }
+                PlaySpawnSound();
+                yield return new WaitForSeconds(spawn.spawnInterval);
             }
-            PlaySpawnSound();
-            yield return new WaitForSeconds(spawn.spawnInterval);
         }      
     }
 

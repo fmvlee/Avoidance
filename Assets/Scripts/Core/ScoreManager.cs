@@ -12,6 +12,8 @@ public class ScoreManager : MonoBehaviour
     // Scores on game over screen
     public GameObject justScoreText;
     public GameObject playerHiScore;
+    private TMPro.TextMeshProUGUI topFive;
+    private TMPro.TextMeshProUGUI topFivetoTen;
 
     // How often the score updates
     public float scoreUpdateTime = 0.01f;
@@ -26,12 +28,15 @@ public class ScoreManager : MonoBehaviour
         // Find score text to update
         justScoreText = GameObject.FindGameObjectWithTag("JustScored");
         playerHiScore = GameObject.FindGameObjectWithTag("HiScoreText");
-        // Hide the gameover panel
-        GameObject.FindGameObjectWithTag("GameOverPanel").SetActive(false); 
+        // Get highscore boxes
+        topFive = GameObject.FindWithTag("Top5").GetComponent<TMPro.TextMeshProUGUI>();
+        topFivetoTen = GameObject.FindWithTag("Top6to10").GetComponent<TMPro.TextMeshProUGUI>();
     }
     // Start is called before the first frame update
     void Start()
     {
+        // Hide the gameover panel
+        GameObject.FindGameObjectWithTag("GameOverPanel").SetActive(false);
         // Initialise variables
         leaderboard = GetComponent<LeaderboardManager>();
         score = 0;
@@ -47,7 +52,12 @@ public class ScoreManager : MonoBehaviour
         if (GameManager.Instance.currentState == GameManager.GameState.Playing && scoreText != null)
         {
             // Update the score text
-            scoreText.GetComponent<TMPro.TextMeshProUGUI>().text = score.ToString("D8");
+            scoreText.GetComponent<TMPro.TextMeshProUGUI>().text = score.ToString("D6");
+        }
+
+        if (GameManager.Instance.currentState == GameManager.GameState.GameOver)
+        {
+            UpdateTopTen();
         }
     }
 
@@ -74,18 +84,55 @@ public class ScoreManager : MonoBehaviour
         leaderboard.UpdatePlayerHiScore();
 
         // Update the score just achieved
-        justScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "You Scored: " + score.ToString("D8");
+        justScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "You Scored: " + score.ToString("D6");
 
         // Check if the new score is bigger than the players other scores and update the scores appropriately
         if (score > leaderboard.playerHighScore) { 
-            playerHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "Your HI Score: " + score.ToString("D8");
+            playerHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "Your HI Score: " + score.ToString("D6");
         }
         else
         {
-            playerHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "Your HI Score: " + leaderboard.playerHighScore.ToString("D8");
+            playerHiScore.GetComponent<TMPro.TextMeshProUGUI>().text = "Your HI Score: " + leaderboard.playerHighScore.ToString("D6");
         }
     }
 
+    public void UpdateTopTen()
+    {
+        // Reset Text
+        topFive.text = "";
+        topFivetoTen.text = "";
+
+        // Populate top 5
+        for (int i = 0; i < 5; i++)
+        {
+            try
+            {
+                if (leaderboard.globalTopTenHighScores[i].ToString() != null)
+                {
+                    topFive.text += (i + 1).ToString() + ". " + leaderboard.globalTopTenHighScores[i].ToString("D6") + "\n";
+                }
+            }
+            catch
+            {
+                topFive.text += (i + 1).ToString() + ". " + 0.ToString("D6") + "\n";
+            }
+        }
+        // Populate top 10
+        for (int i = 5; i < 10; i++)
+        {
+            try
+            {
+                if (leaderboard.globalTopTenHighScores[i].ToString() != null)
+                {
+                    topFivetoTen.text += (i + 1).ToString() + ". " + leaderboard.globalTopTenHighScores[i].ToString("D6") + "\n";
+                }
+            }
+            catch
+            {
+                topFivetoTen.text += (i + 1).ToString() + ". " + 0.ToString("D6") + "\n";
+            }
+        }
+    }
     // Adds to the players score
     public void AddScore(int additionalScore)
     {

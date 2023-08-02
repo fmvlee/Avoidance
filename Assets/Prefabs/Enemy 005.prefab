@@ -153,6 +153,8 @@ MonoBehaviour:
   randomiseLifespan: 0
   minLifespan: 5
   maxLifespan: 20
+  effectSpeed: 0.08
+  effectTransparancy: 0.5
 --- !u!114 &5678214398366676465
 MonoBehaviour:
   m_ObjectHideFlags: 0

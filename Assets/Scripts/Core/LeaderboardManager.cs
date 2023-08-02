@@ -20,7 +20,7 @@ public class LeaderboardManager : MonoBehaviour
     // Variables to store scores
     public int playerHighScore = 0;
     public int globalHighScore = 0;
-    public int[] globalTopTenHighScores;
+    public List<int> globalTopTenHighScores;
 
     // Called before any other methods
     private async void Awake()
@@ -32,9 +32,7 @@ public class LeaderboardManager : MonoBehaviour
         {            
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
-        // Initialise 
-        globalTopTenHighScores = new int[10];
-
+        
         // Update the scores
         UpdatePlayerHiScore();
         UpdateGlobalHighScore();
@@ -46,9 +44,11 @@ public class LeaderboardManager : MonoBehaviour
     {
         // Add score to leaderboard
         var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
+        // Update the global high scores
+        UpdateTopTenGlobalHighScore();
         // Debug logs for testing
         //Debug.Log(JsonConvert.SerializeObject(playerEntry));
-      //  Debug.Log($"Score: {playerEntry.Score}");
+        //Debug.Log($"Score: {playerEntry.Score}");
         //Debug.Log($"Player Name: {playerEntry.PlayerName}");
     }
 
@@ -58,9 +58,10 @@ public class LeaderboardManager : MonoBehaviour
         // Get the current players high score
         var scoreResponse = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardId);
         // Update highscore variable
-        playerHighScore = Convert.ToInt32(scoreResponse.Score);
-        // Debug logs for testing
-        //Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+        if (scoreResponse.PlayerId != null)
+        {
+            playerHighScore = Convert.ToInt32(scoreResponse.Score);
+        }
     }
 
     // Update global high score
@@ -69,30 +70,30 @@ public class LeaderboardManager : MonoBehaviour
         // Gets the highest score for the game
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId, new GetScoresOptions { Limit = 1 });
         // Update the highscore variable
-        globalHighScore = Convert.ToInt32(scoresResponse.Results[0].Score);
+        if (scoresResponse.Results.Count > 0)
+        {
+            globalHighScore = Convert.ToInt32(scoresResponse.Results[0].Score);
+        }
         // Debug logs for testing
-       // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+        //Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
     // Update top 10 global high score
     public async void UpdateTopTenGlobalHighScore()
     {
+        // Ensure the list is empty
+        globalTopTenHighScores.Clear();
         // Gets the highest score for the game
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId, new GetScoresOptions { Limit = 10 });
-
-       // Debug.Log(JsonConvert.SerializeObject(scoresResponse.Results[0]));
-        /*/ Update the highscore variable
-        for(int i = 0; i < scoresResponse.Results.Count; i++)
+        // Initialise 
+        // Update the highscore variable
+        if (scoresResponse.Results.Count > 0)
         {
-            globalTopTenHighScores[i] = Convert.ToInt32(scoresResponse.Results[i].Score);
-        }*/
-
-        foreach (var score in scoresResponse.Results)
-        {
-            //Debug.Log(score.PlayerName);
+            for (int i = 0; i < scoresResponse.Results.Count; i++)
+            {
+                globalTopTenHighScores.Add(Convert.ToInt32(scoresResponse.Results[i].Score));
+                Debug.Log(Convert.ToInt32(scoresResponse.Results[i].Score));
+            }
         }
-
-        // Debug logs for testing
-       // Debug.Log("Highscores: " + globalTopTenHighScores);
     }
 }

@@ -52,7 +52,9 @@ MonoBehaviour:
   currentState: 0
   player: {fileID: 0}
   lifeManager: {fileID: 4962300291061533494}
+  scoreManager: {fileID: 0}
   gameStartEvent: {fileID: 11400000, guid: 5e17b79205aeb7d42adcaa8f9944f9e3, type: 2}
+  gameStartCountdownEvent: {fileID: 0}
 --- !u!114 &2789451181954461621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,11 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8e2ee88a8d9134280d13a5f7253ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
   gameOverEvent: {fileID: 11400000, guid: 9c662c9a763955c45a37154662907bb6, type: 2}
+  loseLifeEvent: {fileID: 0}
   livesImages: []
   lifeLostSprite: {fileID: 663387498064354275, guid: 86276afb5674af84cb699901b5aa4ea0,
     type: 3}
+  lifeSprite: {fileID: 0}
+  lifeLostClip: {fileID: 0}
+  gameOverClip: {fileID: 0}
 --- !u!1 &3800443011525369003
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +185,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a28ab8402e9464e44802f23a4e61db20, type: 2}
   - {fileID: 11400000, guid: c0a61f7a65c6641418b72a80e957b647, type: 2}
   - {fileID: 11400000, guid: 0421919b508e82540ab862b6dc6f8906, type: 2}
+  audioClips: []
 --- !u!1 &5785492081635612092
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2612541846822664764}
   - component: {fileID: 3048193837295472254}
+  - component: {fileID: 6037152994946388382}
   m_Layer: 0
   m_Name: NonePlayControls
   m_TagString: Untagged
@@ -224,6 +231,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cf466ed40f0004da4c2bdae74bd3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 3
+--- !u!114 &6037152994946388382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785492081635612092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461bea53b7aa8d3439faae77ffebacf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9c662c9a763955c45a37154662907bb6, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3048193837295472254}
+        m_TargetAssemblyTypeName: InputControls, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5975682107891118872
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,3 +353,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHighScore: 0
   globalHighScore: 0
+  globalTopTenHighScores: 

@@ -20,6 +20,13 @@ public class Lifespan : MonoBehaviour
     [SerializeField]
     private float maxLifespan = 20f;
 
+    // Destroy effect
+    [SerializeField]
+    private float effectSpeed = 0.05f;
+    [SerializeField]
+    private float effectTransparancy = 0.6f;
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         // Load the data
@@ -28,6 +35,7 @@ public class Lifespan : MonoBehaviour
         randomiseLifespan = lifeSpanData.randomiseLifespan;
         minLifespan = lifeSpanData.minLifespan;
         maxLifespan = lifeSpanData.maxLifespan;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -41,7 +49,29 @@ public class Lifespan : MonoBehaviour
             }
             // Start a coroutine to destroy the object
             StartCoroutine(EndObjectLife());
+            StartCoroutine(EndEffectStart());
         }
+    }
+
+    IEnumerator EndEffectStart()
+    {
+        // Wait for the objects lifespan
+        yield return new WaitForSeconds(lifespan - 1.5f);
+        StartCoroutine(EndEffect());
+    }
+
+    IEnumerator EndEffect()
+    {
+        if(spriteRenderer.color.a == effectTransparancy)
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+        } else
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, effectTransparancy);
+        }
+        // Wait for the objects lifespan
+        yield return new WaitForSeconds(effectSpeed);
+        StartCoroutine(EndEffect());
     }
 
     // Handles ending the objects life
