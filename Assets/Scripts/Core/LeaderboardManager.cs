@@ -47,9 +47,9 @@ public class LeaderboardManager : MonoBehaviour
         // Add score to leaderboard
         var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
         // Debug logs for testing
-        Debug.Log(JsonConvert.SerializeObject(playerEntry));
-        Debug.Log($"Score: {playerEntry.Score}");
-        Debug.Log($"Player Name: {playerEntry.PlayerName}");
+        //Debug.Log(JsonConvert.SerializeObject(playerEntry));
+      //  Debug.Log($"Score: {playerEntry.Score}");
+        //Debug.Log($"Player Name: {playerEntry.PlayerName}");
     }
 
     // Gets the current players high score
@@ -60,7 +60,7 @@ public class LeaderboardManager : MonoBehaviour
         // Update highscore variable
         playerHighScore = Convert.ToInt32(scoreResponse.Score);
         // Debug logs for testing
-        Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+        //Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
     // Update global high score
@@ -71,7 +71,7 @@ public class LeaderboardManager : MonoBehaviour
         // Update the highscore variable
         globalHighScore = Convert.ToInt32(scoresResponse.Results[0].Score);
         // Debug logs for testing
-        Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+       // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
     // Update top 10 global high score
@@ -80,7 +80,7 @@ public class LeaderboardManager : MonoBehaviour
         // Gets the highest score for the game
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId, new GetScoresOptions { Limit = 10 });
 
-        Debug.Log(JsonConvert.SerializeObject(scoresResponse.Results[0]));
+       // Debug.Log(JsonConvert.SerializeObject(scoresResponse.Results[0]));
         /*/ Update the highscore variable
         for(int i = 0; i < scoresResponse.Results.Count; i++)
         {
@@ -89,10 +89,10 @@ public class LeaderboardManager : MonoBehaviour
 
         foreach (var score in scoresResponse.Results)
         {
-            Debug.Log(score.PlayerName);
+            //Debug.Log(score.PlayerName);
         }
 
         // Debug logs for testing
-        Debug.Log("Highscores: " + globalTopTenHighScores);
+       // Debug.Log("Highscores: " + globalTopTenHighScores);
     }
 }

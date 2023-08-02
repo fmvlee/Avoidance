@@ -17,6 +17,7 @@ TagManager:
   - Immune
   - AbilitySlider
   - GameOverPanel
+  - VidPlayer
   layers:
   - Default
   - TransparentFX

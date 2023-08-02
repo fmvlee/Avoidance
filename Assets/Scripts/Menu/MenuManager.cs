@@ -25,12 +25,15 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private float recordingDefaultWaitTime = 3f;
 
+  // VidPlayer gameplayVideo;
+
     // Initialise variable on Awake
     private void Awake()
     {
         // Initialise recording and main canvas
         recordingWaitTime = recordingDefaultWaitTime;
         isPlayingRecording = false;
+       // gameplayVideo = GameObject.FindWithTag("VidPlayer").GetComponent<VidPlayer>();
         mainCanvas = GameObject.FindWithTag("MainCanvas");
         recordingCanvas = GameObject.FindWithTag("RecordingCanvas");
         recordingCanvas.SetActive(false);
@@ -50,6 +53,8 @@ public class MenuManager : MonoBehaviour
             recordingCanvas.SetActive(true);
             mainCanvas.SetActive(false);
             isPlayingRecording = true;
+            // Play Video
+            //gameplayVideo.PlayVideo();
         } else
         {
             // Decrease wait time
