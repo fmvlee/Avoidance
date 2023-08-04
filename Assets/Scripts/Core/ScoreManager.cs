@@ -98,41 +98,31 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateTopTen()
     {
-        // Reset Text
-        topFive.text = "";
-        topFivetoTen.text = "";
-
         // Populate top 5
-        for (int i = 0; i < 5; i++)
-        {
-            try
-            {
-                if (leaderboard.globalTopTenHighScores[i].ToString() != null)
-                {
-                    topFive.text += (i + 1).ToString() + ". " + leaderboard.globalTopTenHighScores[i].ToString("D6") + "\n";
-                }
-            }
-            catch
-            {
-                topFive.text += (i + 1).ToString() + ". " + 0.ToString("D6") + "\n";
-            }
-        }
+        UpdateScoreList(topFive, 0, 5);
         // Populate top 10
-        for (int i = 5; i < 10; i++)
+        UpdateScoreList(topFivetoTen, 5, 10);        
+    }
+
+    public void UpdateScoreList(TMPro.TextMeshProUGUI textObject, int from, int to)
+    {
+        textObject.text = "";
+        for (int i = from; i < to; i++)
         {
             try
             {
                 if (leaderboard.globalTopTenHighScores[i].ToString() != null)
                 {
-                    topFivetoTen.text += (i + 1).ToString() + ". " + leaderboard.globalTopTenHighScores[i].ToString("D6") + "\n";
+                    textObject.text += (i + 1).ToString() + ". " + leaderboard.globalTopTenHighScores[i].ToString("D6") + "\n";
                 }
             }
             catch
             {
-                topFivetoTen.text += (i + 1).ToString() + ". " + 0.ToString("D6") + "\n";
+                textObject.text += (i + 1).ToString() + ". " + 0.ToString("D6") + "\n";
             }
         }
     }
+
     // Adds to the players score
     public void AddScore(int additionalScore)
     {

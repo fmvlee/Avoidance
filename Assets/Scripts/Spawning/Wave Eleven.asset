@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86a62b1923db4ed44ab757fa640cf636, type: 3}
-  m_Name: Wave Ten
+  m_Name: Wave Eleven
   m_EditorClassIdentifier: 
-  waveName: Wave Ten
-  waveTime: 158
+  waveName: You WILL Die
+  waveTime: 178
   spawnables:
-  - {fileID: 11400000, guid: 0127b1225435e2845beb6ab33751278d, type: 2}
+  - {fileID: 11400000, guid: 565672dea021f054094e0080eccf0b1c, type: 2}
   - {fileID: 11400000, guid: e13636fe4d5848c4686d34c103bf0476, type: 2}
-  - {fileID: 11400000, guid: d60c996b83e8f62459c3eb2bf704745b, type: 2}
-  - {fileID: 11400000, guid: 91af6a2e82d7b2841b756fa49b53f528, type: 2}
-  - {fileID: 11400000, guid: 91af6a2e82d7b2841b756fa49b53f528, type: 2}
-  - {fileID: 11400000, guid: 91af6a2e82d7b2841b756fa49b53f528, type: 2}
+  - {fileID: 11400000, guid: e13636fe4d5848c4686d34c103bf0476, type: 2}
+  - {fileID: 11400000, guid: 0127b1225435e2845beb6ab33751278d, type: 2}
+  - {fileID: 11400000, guid: 0127b1225435e2845beb6ab33751278d, type: 2}

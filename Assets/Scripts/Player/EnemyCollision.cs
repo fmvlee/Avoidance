@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles the player colliding with the enemy
 public class EnemyCollision : MonoBehaviour
 {
     // Immunity time granted following collision
@@ -44,8 +45,6 @@ public class EnemyCollision : MonoBehaviour
         animator.SetBool("Immune", true);
         // Move the player to the immune layer so they can pass through enemies
         gameObject.layer = 8;
-        // Deactivate the players collider so the player passes through enemies
-        //GetComponent<CircleCollider2D>().enabled = false;
         // End immunity
         StartCoroutine(EndImmunity());
     }

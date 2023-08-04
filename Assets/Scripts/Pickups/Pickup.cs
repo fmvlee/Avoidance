@@ -7,6 +7,10 @@ public class Pickup : MonoBehaviour
     // The amount of additional score the pickup will give
     [SerializeField]
     private int scoreIncreaseValue = 0;
+    // Pickup text
+    [SerializeField]
+    private GameObject textObject;
+    private TMPro.TextMeshPro pickupText;
 
     // Handles the type of pickup
     [SerializeField]
@@ -16,10 +20,23 @@ public class Pickup : MonoBehaviour
     // Handles the audio
     private AudioSource audioSource;
 
-    private void Awake()
+    // Fade in speed
+    [SerializeField]
+    private float fadeOutSpeed = 0.1f;
+    // Fade in amount perspeed
+    [SerializeField]
+    private float fadeOutAmount = 0.1f;
+    // Alpha from 0 to 1 to start at
+    [SerializeField]
+    private float startAlpha = 1f;
+
+    private void Start()
     {
         // Initialise the Audio Source
         audioSource = GetComponent<AudioSource>();
+        pickupText = textObject.GetComponent<TMPro.TextMeshPro>();
+        pickupText.text = "+" + scoreIncreaseValue.ToString();
+        pickupText.enabled = false;
     }
 
     // Detects if there is a collision with the pickup
@@ -48,6 +65,8 @@ public class Pickup : MonoBehaviour
 
     IEnumerator PickupSound()
     {
+        pickupText.enabled = true;
+        StartCoroutine(StartFade());
         // Hide the object
         gameObject.GetComponent<Renderer>().enabled = false;
         // Play the pickup sound
@@ -56,5 +75,24 @@ public class Pickup : MonoBehaviour
         yield return new WaitForSeconds(audioSource.clip.length);
         // Destroy the pickup
         Destroy(gameObject);
+    }
+
+    IEnumerator StartFade()
+    {
+        // Fade out the Alpha
+        float newAlpha = Mathf.Clamp(pickupText.color.a - fadeOutAmount, 0, 1);
+        pickupText.color = new Color(pickupText.color.r, pickupText.color.g, pickupText.color.b, newAlpha);
+        // Wait for fade out speed
+        yield return new WaitForSeconds(fadeOutSpeed);
+        // Recursivly call the function untilfully faded in
+        if (pickupText.color.a > 0)
+        {
+            StartCoroutine(StartFade());
+        }
+        else
+        {
+            // Destroy once the object has faded out
+            Destroy(gameObject);
+        }
     }
 }

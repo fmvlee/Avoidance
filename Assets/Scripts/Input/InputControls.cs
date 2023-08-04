@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-// Handles the controls#when the game reaches a GameOver state
+// Handles the controls when the game reaches a GameOver state
 public class InputControls : MonoBehaviour
 {
     [SerializeField]
@@ -46,7 +46,7 @@ public class InputControls : MonoBehaviour
         StartCoroutine(AllowInput());
     }
 
-    // Delays the user input on game over
+    // Delays the user input on game over to show scores
     IEnumerator AllowInput()
     {
         // Wait and then allow input
@@ -54,6 +54,4 @@ public class InputControls : MonoBehaviour
         allowInput = true;
         continueText.SetActive(true);
     }
-
-
 }

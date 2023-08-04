@@ -11,7 +11,7 @@ using Unity.Services.Leaderboards.Models;
 using Newtonsoft.Json.Linq;
 using System;
 
-// Responsible for handling the Unit Leaderboard Service
+// Responsible for handling the Unity Leaderboard Service
 public class LeaderboardManager : MonoBehaviour
 {
     // Leaderboard ID from Unity Service
@@ -46,10 +46,6 @@ public class LeaderboardManager : MonoBehaviour
         var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
         // Update the global high scores
         UpdateTopTenGlobalHighScore();
-        // Debug logs for testing
-        //Debug.Log(JsonConvert.SerializeObject(playerEntry));
-        //Debug.Log($"Score: {playerEntry.Score}");
-        //Debug.Log($"Player Name: {playerEntry.PlayerName}");
     }
 
     // Gets the current players high score
@@ -74,8 +70,6 @@ public class LeaderboardManager : MonoBehaviour
         {
             globalHighScore = Convert.ToInt32(scoresResponse.Results[0].Score);
         }
-        // Debug logs for testing
-        //Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
     // Update top 10 global high score
@@ -92,7 +86,6 @@ public class LeaderboardManager : MonoBehaviour
             for (int i = 0; i < scoresResponse.Results.Count; i++)
             {
                 globalTopTenHighScores.Add(Convert.ToInt32(scoresResponse.Results[i].Score));
-                Debug.Log(Convert.ToInt32(scoresResponse.Results[i].Score));
             }
         }
     }
