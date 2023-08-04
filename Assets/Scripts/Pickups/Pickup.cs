@@ -26,9 +26,6 @@ public class Pickup : MonoBehaviour
     // Fade in amount perspeed
     [SerializeField]
     private float fadeOutAmount = 0.1f;
-    // Alpha from 0 to 1 to start at
-    [SerializeField]
-    private float startAlpha = 1f;
 
     private void Start()
     {
@@ -45,8 +42,10 @@ public class Pickup : MonoBehaviour
         // If the player collides and the game is playing
         if (collision.tag == "Player" && GameManager.Instance.currentState == GameManager.GameState.Playing)
         {
+            // Disable the current objects collider to prevent retriggering
+            GetComponent<CapsuleCollider2D>().enabled = false;
             // Play sound and destroy object
-            StartCoroutine(PickupSound());
+            StartCoroutine(PickupItem());
 
             // Decide on the action to take depending on the pickupType
             switch (pickupType)
@@ -63,8 +62,9 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    IEnumerator PickupSound()
+    IEnumerator PickupItem()
     {
+        // Show the pickup text and start fading it
         pickupText.enabled = true;
         StartCoroutine(StartFade());
         // Hide the object
